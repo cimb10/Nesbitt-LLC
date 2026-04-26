@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nesbitt Legal — Austin, Texas | Labor & Employment | Mediation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a3a5c;
+    --navy-dark: #0f2540;
+    --navy-mid: #2d5070;
+    --navy-light: #3d6a90;
+    --blue: #4a9fd4;
+    --blue-light: #7bbfe0;
+    --blue-pale: #e8f2fa;
+    --blue-bg: #f0f5fa;
+    --white: #ffffff;
+    --cream: #f7f9fc;
+    --rule: #c8daea;
+    --rule-light: #ddeaf5;
+    --text: #1a2a3a;
+    --text-mid: #3a5a7a;
+    --text-light: #6a8aaa;
+    --transition: 0.28s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Barlow', sans-serif; font-weight: 300; color: var(--text); background: var(--blue-bg); overflow-x: hidden; }
+
+  /* ── PAGE SYSTEM ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,0.98); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    transition: box-shadow var(--transition);
+  }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(26,58,92,0.10); }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 48px;
+    height: 70px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    display: flex; flex-direction: column; line-height: 1;
+    cursor: pointer; text-decoration: none;
+  }
+  .nav-logo-name {
+    font-family: 'EB Garamond', serif; font-size: 18px; font-weight: 500;
+    color: var(--navy); letter-spacing: 0.01em;
+  }
+  .nav-logo-sub {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue);
+    margin-top: 3px;
+  }
+  .nav-links { display: flex; align-items: center; gap: 36px; }
+  .nav-link {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy);
+    text-decoration: none; cursor: pointer; padding-bottom: 2px;
+    border-bottom: 2px solid transparent; transition: border-color var(--transition), color var(--transition);
+  }
+  .nav-link:hover, .nav-link.active { color: var(--blue); border-bottom-color: var(--blue); }
+  .nav-cta {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--white);
+    background: var(--navy); padding: 10px 22px; text-decoration: none;
+    transition: background var(--transition);
+  }
+  .nav-cta:hover { background: var(--navy-light); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy); min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 140px 48px 80px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: 0; right: 220px; bottom: 0; width: 1px;
+    background: rgba(74,159,212,0.18);
+  }
+  .hero::after {
+    content: ''; position: absolute; top: 0; right: 440px; bottom: 0; width: 1px;
+    background: rgba(255,255,255,0.05);
+  }
+  .hero-inner { max-width: 1280px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue-light);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before { content: ''; width: 40px; height: 2px; background: var(--blue); }
+  .hero h1 {
+    font-family: 'EB Garamond', serif; font-size: clamp(36px, 5vw, 62px);
+    font-weight: 400; line-height: 1.18; color: var(--white);
+    max-width: 680px; margin-bottom: 28px;
+  }
+  .hero h1 em { font-style: italic; color: var(--blue-light); }
+  .hero-sub {
+    font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.55);
+    max-width: 520px; line-height: 1.8; letter-spacing: 0.01em; margin-bottom: 44px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    background: var(--blue); color: var(--white);
+    padding: 14px 32px; text-decoration: none; cursor: pointer;
+    transition: background var(--transition); display: inline-block;
+    border: none;
+  }
+  .btn-primary:hover { background: var(--blue-light); }
+  .btn-outline {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    border: 1.5px solid rgba(255,255,255,0.35); color: var(--white);
+    padding: 14px 32px; text-decoration: none; cursor: pointer;
+    transition: border-color var(--transition), background var(--transition); display: inline-block;
+    background: transparent;
+  }
+  .btn-outline:hover { border-color: var(--blue-light); background: rgba(74,159,212,0.12); }
+  .btn-dark {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    background: var(--navy); color: var(--white);
+    padding: 12px 24px; text-decoration: none; cursor: pointer;
+    transition: background var(--transition); display: inline-block; border: none;
+  }
+  .btn-dark:hover { background: var(--navy-light); }
+  .btn-ghost {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1px solid var(--rule); color: var(--navy);
+    padding: 10px 20px; text-decoration: none; cursor: pointer;
+    transition: border-color var(--transition), color var(--transition), background var(--transition);
+    display: inline-block; background: var(--white);
+  }
+  .btn-ghost:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-pale); }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--navy-mid); padding: 12px 48px;
+    display: flex; gap: 0; overflow: hidden; align-items: center;
+  }
+  .ticker-track {
+    display: flex; gap: 0; align-items: center;
+    animation: ticker-scroll 28s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.75);
+    padding: 0 28px; display: inline-flex; align-items: center; gap: 10px;
+  }
+  .ticker-item::after { content: '·'; color: var(--blue-light); font-size: 14px; }
+  @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ── SECTION SHELL ── */
+  .section { padding: 80px 48px; }
+  .section-inner { max-width: 1280px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.24em; text-transform: uppercase; color: var(--blue);
+    margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before { content: ''; width: 28px; height: 2px; background: var(--blue); flex-shrink: 0; }
+  .section-title {
+    font-family: 'EB Garamond', serif; font-size: clamp(26px, 3vw, 38px);
+    font-weight: 400; line-height: 1.25; color: var(--navy); max-width: 620px;
+    margin-bottom: 48px;
+  }
+  .section-title strong { font-weight: 500; border-bottom: 1.5px solid var(--blue); }
+  .section-title em { font-style: italic; color: var(--blue); }
+
+  /* ── PRACTICE GRID ── */
+  .practice-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--rule); border-left: 1px solid var(--rule);
+  }
+  .practice-card {
+    background: var(--white); padding: 36px 32px;
+    border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    transition: background var(--transition); cursor: pointer;
+  }
+  .practice-card:hover { background: var(--blue-pale); }
+  .practice-card-num {
+    font-family: 'EB Garamond', serif; font-size: 13px; color: var(--blue-light);
+    margin-bottom: 14px; display: block;
+  }
+  .practice-card h3 {
+    font-family: 'EB Garamond', serif; font-size: 22px; font-weight: 500;
+    color: var(--navy); margin-bottom: 12px; line-height: 1.3;
+  }
+  .practice-card p {
+    font-size: 14px; font-weight: 300; color: var(--text-light); line-height: 1.75;
+  }
+  .practice-card-arrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue);
+    margin-top: 20px; display: flex; align-items: center; gap: 6px;
+  }
+  .practice-card-arrow::after { content: '→'; transition: transform var(--transition); }
+  .practice-card:hover .practice-card-arrow::after { transform: translateX(4px); }
+
+  /* ── PRACTICE PAGE CONTENT ── */
+  .practice-section-content { max-width: 800px; }
+  .practice-section-content h2 {
+    font-family: 'EB Garamond', serif; font-size: 30px; font-weight: 500;
+    color: var(--navy); margin-bottom: 18px; margin-top: 48px; padding-top: 48px;
+    border-top: 1px solid var(--rule);
+  }
+  .practice-section-content h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+  .practice-section-content p { font-size: 15px; line-height: 1.85; color: var(--text-mid); margin-bottom: 16px; }
+  .practice-section-content ul {
+    list-style: none; margin: 16px 0 24px 0; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 8px 32px;
+  }
+  .practice-section-content ul li {
+    font-size: 14px; font-weight: 300; color: var(--text-light); line-height: 1.6;
+    padding-left: 16px; position: relative;
+  }
+  .practice-section-content ul li::before {
+    content: '–'; position: absolute; left: 0; color: var(--blue);
+  }
+  .practice-section-content a { color: var(--blue); text-decoration: none; }
+  .practice-section-content a:hover { text-decoration: underline; }
+  .practice-section-content .single-col ul { grid-template-columns: 1fr; }
+
+  /* ── ATTORNEYS SECTION ── */
+  .attorneys-dark { background: var(--navy); padding: 80px 48px 0; }
+  .attorneys-dark .section-label { color: var(--blue-light); border-color: rgba(255,255,255,0.12); }
+  .attorneys-dark .section-label::before { background: var(--blue-light); }
+  .attorneys-dark .section-title { color: var(--white); }
+  .atty-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--navy-mid); margin-top: 0; }
+  .atty-card { background: var(--navy); padding: 48px 40px; }
+  .atty-photo-placeholder {
+    width: 88px; height: 110px; background: var(--navy-mid);
+    margin-bottom: 24px; display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.08);
+    flex-direction: column; gap: 6px;
+  }
+  .atty-photo-placeholder span {
+    font-family: 'EB Garamond', serif; font-size: 26px; color: rgba(123,191,224,0.4);
+  }
+  .atty-photo-placeholder small {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 8px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.2);
+  }
+  .atty-cert {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-light);
+    margin-bottom: 8px;
+  }
+  .atty-name {
+    font-family: 'EB Garamond', serif; font-size: 28px; font-weight: 500;
+    color: var(--white); margin-bottom: 20px;
+  }
+  .atty-bio { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.85; margin-bottom: 28px; }
+  .atty-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .atty-btn {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 14px; text-decoration: none; cursor: pointer;
+    transition: border-color var(--transition), color var(--transition), background var(--transition);
+    display: inline-block;
+  }
+  .atty-btn:hover { border-color: var(--blue-light); color: var(--blue-light); background: rgba(74,159,212,0.1); }
+
+  /* ── STATS BAR ── */
+  .stats-bar { display: grid; grid-template-columns: 1fr 1fr 1fr; background: var(--navy-dark); }
+  .stat-item { padding: 36px 40px; border-right: 1px solid rgba(255,255,255,0.08); text-align: center; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: 'EB Garamond', serif; font-size: 44px; font-weight: 400; color: var(--blue-light); line-height: 1; }
+  .stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 8px; line-height: 1.5; }
+
+  /* ── MEDIATION PAGE ── */
+  .med-intro { display: grid; grid-template-columns: 1fr 340px; gap: 64px; align-items: start; }
+  .med-intro-text p { font-size: 15px; font-weight: 300; color: var(--text-mid); line-height: 1.85; margin-bottom: 18px; }
+  .med-sidebar { background: var(--white); border: 1px solid var(--rule); padding: 32px; }
+  .med-sidebar-photo {
+    width: 100%; height: 200px; background: var(--blue-pale);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px; margin-bottom: 24px;
+    border: 1px solid var(--rule);
+  }
+  .med-sidebar-photo span { font-family: 'EB Garamond', serif; font-size: 32px; color: var(--blue-light); }
+  .med-sidebar-photo small { font-family: 'Barlow Condensed', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-light); }
+  .med-sidebar-cert { display: block; margin-bottom: 16px; }
+  .med-sidebar-cert img { max-width: 80px; }
+  .med-sidebar-name { font-family: 'EB Garamond', serif; font-size: 22px; color: var(--navy); margin-bottom: 20px; }
+  .med-sidebar-btns { display: flex; flex-direction: column; gap: 8px; }
+  .med-sidebar-btn {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--navy-mid); border: 1px solid var(--rule);
+    padding: 10px 16px; text-decoration: none; cursor: pointer;
+    transition: border-color var(--transition), color var(--transition), background var(--transition);
+    display: block; text-align: center; background: var(--white);
+  }
+  .med-sidebar-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-pale); }
+
+  /* ── MEDIATION FEES ── */
+  .fees-section { background: var(--white); padding: 64px 48px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .fees-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border-left: 1px solid var(--rule); border-top: 1px solid var(--rule); margin-top: 40px; }
+  .fee-card { padding: 36px 32px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .fee-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+  .fee-type { font-family: 'EB Garamond', serif; font-size: 26px; font-weight: 500; color: var(--navy); margin-bottom: 8px; }
+  .fee-price { font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 500; color: var(--navy-mid); margin-bottom: 6px; }
+  .fee-time { font-size: 13px; font-weight: 300; color: var(--text-light); margin-bottom: 24px; display: flex; align-items: center; gap: 6px; }
+  .fee-time::before { content: '○'; font-size: 10px; color: var(--blue); }
+
+  /* ── CONTACT BAR ── */
+  .contact-bar { background: var(--blue-pale); border-top: 3px solid var(--blue); padding: 52px 48px; }
+  .contact-bar-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 32px; align-items: start; }
+  .contact-item-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+  .contact-item-val { font-family: 'EB Garamond', serif; font-size: 20px; color: var(--navy); line-height: 1.3; }
+  .contact-item-val small { font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 300; color: var(--text-light); display: block; margin-top: 3px; }
+  .contact-item-val a { color: var(--navy); text-decoration: none; }
+  .contact-item-val a:hover { color: var(--blue); }
+
+  /* ── PAGE HERO (inner pages) ── */
+  .page-hero { background: var(--navy); padding: 140px 48px 60px; }
+  .page-hero-inner { max-width: 1280px; margin: 0 auto; }
+  .page-hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .page-hero-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--blue); }
+  .page-hero h1 { font-family: 'EB Garamond', serif; font-size: clamp(32px,4vw,52px); font-weight: 400; line-height: 1.2; color: var(--white); max-width: 600px; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--navy-dark); padding: 60px 48px 36px; }
+  .footer-inner { max-width: 1280px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 48px; margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .footer-logo-name { font-family: 'EB Garamond', serif; font-size: 20px; color: var(--white); margin-bottom: 6px; }
+  .footer-logo-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 20px; }
+  .footer-address { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 2; }
+  .footer-col-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 16px; }
+  .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
+  .footer-col-link { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.4); text-decoration: none; cursor: pointer; transition: color var(--transition); }
+  .footer-col-link:hover { color: var(--blue-light); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-legal { font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.2); letter-spacing: 0.02em; }
+  .footer-pay { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.15); padding: 8px 16px; text-decoration: none; transition: color var(--transition), border-color var(--transition); cursor: pointer; }
+  .footer-pay:hover { color: var(--blue-light); border-color: var(--blue-light); }
+
+  /* ── ANIMATIONS ── */
+  .fade-in { opacity: 0; transform: translateY(18px); animation: fadeUp 0.7s ease forwards; }
+  .fade-in-1 { animation-delay: 0.1s; }
+  .fade-in-2 { animation-delay: 0.25s; }
+  .fade-in-3 { animation-delay: 0.4s; }
+  .fade-in-4 { animation-delay: 0.55s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--rule); max-width: 1280px; margin: 0 auto; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .nav-inner { padding: 0 24px; }
+    .hero, .section, .attorneys-dark, .fees-section, .contact-bar, .page-hero, footer { padding-left: 24px; padding-right: 24px; }
+    .hero h1 { font-size: 32px; }
+    .practice-grid, .atty-grid, .med-intro, .fees-grid, .contact-bar-inner, .footer-top { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════ NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" onclick="showPage('home')">
+      <span class="nav-logo-name">Nesbitt Legal</span>
+      <span class="nav-logo-sub">Austin, Texas</span>
+    </a>
+    <div class="nav-links">
+      <span class="nav-link" onclick="showPage('practice')" id="nav-practice">Practice</span>
+      <span class="nav-link" onclick="showPage('attorneys')" id="nav-attorneys">Attorneys</span>
+      <span class="nav-link" onclick="showPage('mediation')" id="nav-mediation">Mediation</span>
+      <span class="nav-link" onclick="showPage('contact')" id="nav-contact">Contact</span>
+    </div>
+    <a class="nav-cta" href="tel:1-512-617-5563">(512) 617-5563</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════ HOME PAGE -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow fade-in fade-in-1">Board Certified · Labor & Employment Law · Texas</div>
+      <h1 class="fade-in fade-in-2">We are mediators and attorneys who provide <em>experienced, client-focused</em> legal representation.</h1>
+      <p class="hero-sub fade-in fade-in-3">Mediation · Employment Consulting for Employers and Executives · Non-Compete and Employment Agreement Negotiation and Advice</p>
+      <div class="hero-btns fade-in fade-in-4">
+        <button class="btn-primary" onclick="showPage('practice')">Our Practice →</button>
+        <button class="btn-outline" onclick="showPage('attorneys')">Meet the Attorneys</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ticker -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item">Labor & Employment Advice</span>
+      <span class="ticker-item">Mediation</span>
+      <span class="ticker-item">Non-Compete Negotiation</span>
+      <span class="ticker-item">Workplace Investigations</span>
+      <span class="ticker-item">Employment Consulting & Training</span>
+      <span class="ticker-item">Severance Agreements</span>
+      <span class="ticker-item">EEOC Charges</span>
+      <span class="ticker-item">Employment Discrimination</span>
+      <span class="ticker-item">Labor & Employment Advice</span>
+      <span class="ticker-item">Mediation</span>
+      <span class="ticker-item">Non-Compete Negotiation</span>
+      <span class="ticker-item">Workplace Investigations</span>
+      <span class="ticker-item">Employment Consulting & Training</span>
+      <span class="ticker-item">Severance Agreements</span>
+      <span class="ticker-item">EEOC Charges</span>
+      <span class="ticker-item">Employment Discrimination</span>
+    </div>
+  </div>
+
+  <!-- Practice Areas Preview -->
+  <section class="section" style="background: var(--cream);">
+    <div class="section-inner">
+      <div class="section-label">Our Practice</div>
+      <h2 class="section-title">Experienced counsel for <strong>employers and executives</strong> in every employment matter.</h2>
+      <div class="practice-grid">
+        <div class="practice-card" onclick="showPage('practice')">
+          <span class="practice-card-num">01</span>
+          <h3>Labor & Employment Advice</h3>
+          <p>Covenants not to compete, employment contracts, EEOC charges, discrimination, sexual harassment, wrongful termination, FMLA, ADA, wage and hour, NLRB, and more.</p>
+          <div class="practice-card-arrow">Learn More</div>
+        </div>
+        <div class="practice-card" onclick="showPage('mediation')">
+          <span class="practice-card-num">02</span>
+          <h3>Mediation</h3>
+          <p>45+ combined years of experience mediating non-compete, trade secrets, shareholder/business divorce, employment contract, and employment discrimination/retaliation cases.</p>
+          <div class="practice-card-arrow">Schedule a Session</div>
+        </div>
+        <div class="practice-card" onclick="showPage('practice')">
+          <span class="practice-card-num">03</span>
+          <h3>Workplace Investigations</h3>
+          <p>Internal investigations of harassment, discrimination, conflicts of interest, and other workplace issues — as advisor or outside investigator at the request of employer or counsel.</p>
+          <div class="practice-card-arrow">Learn More</div>
+        </div>
+        <div class="practice-card" onclick="showPage('practice')">
+          <span class="practice-card-num">04</span>
+          <h3>Employment Consulting & Training</h3>
+          <p>Advising managers and HR professionals on compliance with state and federal labor and employment laws and regulations, plus EEO, supervisor, and HR training.</p>
+          <div class="practice-card-arrow">Learn More</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Attorneys Preview -->
+  <section class="attorneys-dark">
+    <div class="section-inner">
+      <div class="section-label">Our Attorneys</div>
+      <h2 class="section-title">Board-certified attorneys you can <em>trust</em> to deliver results.</h2>
+    </div>
+    <div class="atty-grid" style="max-width:1280px; margin:0 auto;">
+      <div class="atty-card">
+        <div class="atty-photo-placeholder"><span>TN</span><small>Photo</small></div>
+        <div class="atty-cert">Board Certified · Labor & Employment</div>
+        <div class="atty-name">Tom Nesbitt</div>
+        <p class="atty-bio">Tom Nesbitt is Board Certified in Labor and Employment Law by the Texas Board of Legal Specialization. Tom is listed in Best Lawyers in America, and <em>Texas Monthly</em> consistently recognizes him as a Super Lawyer in the practice of Labor & Employment law. Tom earned his JD with honors from the University of Texas School of Law.</p>
+        <div class="atty-actions">
+          <a class="atty-btn" href="mailto:tom@nesbittlegal.com">Email Tom</a>
+          <a class="atty-btn" href="tel:1-512-617-5562">(512) 617-5562</a>
+          <a class="atty-btn" href="https://nesbittlegal.com/wp-content/uploads/2025/01/Tom_Nesbitt.vcf">Open VCard</a>
+          <a class="atty-btn" href="https://nesbittlegal.com/wp-content/uploads/2025/01/NesbittBio2025.pdf" target="_blank">Full Bio (PDF)</a>
+        </div>
+      </div>
+      <div class="atty-card">
+        <div class="atty-photo-placeholder"><span>LG</span><small>Photo</small></div>
+        <div class="atty-cert">Board Certified · Labor & Employment</div>
+        <div class="atty-name">Laura J. Goodson</div>
+        <p class="atty-bio">Laura Goodson is Board Certified in Labor and Employment Law by the Texas Board of Legal Specialization. Laura received her JD with honors from The University of Texas School of Law. Prior to joining DeShazo & Nesbitt in 2014, Laura practiced for 10 years in the Labor and Employment and Trial sections of the Houston office of Gardere, Wynne, Sewell, now Foley Gardere.</p>
+        <div class="atty-actions">
+          <a class="atty-btn" href="mailto:laura@nesbittlegal.com">Email Laura</a>
+          <a class="atty-btn" href="tel:1-512-485-4380">(512) 485-4380</a>
+          <a class="atty-btn" href="https://nesbittlegal.com/wp-content/uploads/2025/01/Laura_J_Goodson.vcf">Open VCard</a>
+          <a class="atty-btn" href="https://nesbittlegal.com/wp-content/uploads/2025/01/GoodsonBio2025.pdf" target="_blank">Full Bio (PDF)</a>
+        </div>
+      </div>
+    </div>
+    <div class="stats-bar" style="max-width:none;">
+      <div class="stat-item">
+        <div class="stat-num">45+</div>
+        <div class="stat-label">Combined Years<br>of Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Board Certified<br>Attorneys</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Labor & Employment<br>Focus</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Bar -->
+  <div class="contact-bar">
+    <div class="contact-bar-inner">
+      <div>
+        <div class="contact-item-label">Call Us</div>
+        <div class="contact-item-val"><a href="tel:1-512-617-5563">(512) 617-5563</a><small>Main Line</small></div>
+      </div>
+      <div>
+        <div class="contact-item-label">Fax</div>
+        <div class="contact-item-val">512.617.5563</div>
+      </div>
+      <div>
+        <div class="contact-item-label">Office Location</div>
+        <div class="contact-item-val" style="font-size:17px;">809 West Avenue<small>Austin, Texas 78701</small></div>
+      </div>
+      <div>
+        <div class="contact-item-label">Pay Bill Online</div>
+        <a class="btn-dark" href="https://smartpay.profitstars.com/express/NESBITT%20LEGAL%20PLLC" target="_blank">Pay Bill Online →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo-name">Nesbitt Legal</div>
+          <div class="footer-logo-sub">Austin, Texas</div>
+          <div class="footer-address">
+            809 West Ave.<br>Austin, TX 78701<br><br>
+            <a href="tel:1-512-617-5563" style="color:rgba(255,255,255,0.4);text-decoration:none;">(512) 617-5563</a><br>
+            Fax: 512.617.5563
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-label">Practice</div>
+          <div class="footer-col-links">
+            <span class="footer-col-link" onclick="showPage('practice')">Labor & Employment Advice</span>
+            <span class="footer-col-link" onclick="showPage('mediation')">Mediation</span>
+            <span class="footer-col-link" onclick="showPage('practice')">Workplace Investigations</span>
+            <span class="footer-col-link" onclick="showPage('practice')">Employment Consulting & Training</span>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-label">Attorneys</div>
+          <div class="footer-col-links">
+            <span class="footer-col-link" onclick="showPage('attorneys')">Tom Nesbitt</span>
+            <span class="footer-col-link" onclick="showPage('attorneys')">Laura J. Goodson</span>
+          </div>
+          <div class="footer-col-label" style="margin-top:28px;">Links</div>
+          <div class="footer-col-links">
+            <span class="footer-col-link" onclick="showPage('contact')">Contact</span>
+            <a class="footer-col-link" href="https://smartpay.profitstars.com/express/NESBITT%20LEGAL%20PLLC" target="_blank">Pay Bill Online</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-legal">Attorney Advertising. Prior results do not guarantee a similar outcome. © 2025 Nesbitt Legal PLLC</div>
+        <a class="footer-pay" href="https://smartpay.profitstars.com/express/NESBITT%20LEGAL%20PLLC" target="_blank">Pay Bill Online</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════ PRACTICE PAGE -->
+<div class="page" id="page-practice">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-hero-eyebrow">Nesbitt Legal</div>
+      <h1>Our Practice</h1>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--white);">
+    <div class="section-inner">
+      <div class="practice-section-content">
+
+        <h2>Mediation</h2>
+        <p>As litigators with a combined 45 years of experience representing companies and individuals in labor & employment law and commercial litigation, we are well-suited to mediate your clients' non-compete, trade secrets, shareholder/business divorce, employment contract or employment discrimination/retaliation cases. To learn more about our mediation practice and to schedule a mediation online, <a onclick="showPage('mediation')" style="cursor:pointer;">click here</a>.</p>
+
+        <h2>Labor and Employment Advice</h2>
+        <p><a onclick="showPage('attorneys')" style="cursor:pointer;">Our attorneys</a> represent employers and executives in labor and employment matters such as:</p>
+        <ul>
+          <li>Covenants not to compete</li>
+          <li>Confidentiality agreements</li>
+          <li>Fiduciary duty and other disputes among business owners</li>
+          <li>Employment contracts</li>
+          <li>Drafting and negotiating severance agreements</li>
+          <li>Responding to charges of discrimination before the EEOC, Texas Workforce Commission, or local equivalent</li>
+          <li>Employment discrimination</li>
+          <li>Sexual harassment</li>
+          <li>Wrongful termination</li>
+          <li>Family and Medical Leave Act (FMLA)</li>
+          <li>Americans with Disabilities Act</li>
+          <li>Wage and hour advice</li>
+          <li>National Labor Relations Board (NLRB)</li>
+        </ul>
+
+        <h2>Workplace Investigations</h2>
+        <p>We advise employers in conducting their own internal investigations of employment or other workplace issues such as harassment, discrimination, conflicts of interest or other matters. We also are available to serve as an outside investigator in which we conduct the investigation at the request of the employer or its inside or outside counsel.</p>
+
+        <h2>Employment Consulting and Training</h2>
+        <p><a onclick="showPage('attorneys')" style="cursor:pointer;">Our attorneys</a> help companies by advising managers and human resources professionals and by assisting in compliance with state and federal labor and employment laws and regulations. We also provide training for human resources professionals, supervisors and other employees.</p>
+        <p><strong style="font-family:'EB Garamond',serif;font-size:18px;font-weight:500;color:var(--navy);">We can consult with you about:</strong></p>
+        <ul class="single-col">
+          <li>Individual discharges</li>
+          <li>Medical leaves</li>
+          <li>Disability accommodations</li>
+          <li>Family and Medical Leave Act (FMLA)</li>
+          <li>Employee handbooks and policies</li>
+          <li>Equal Employment Opportunity Commission (EEOC) charges</li>
+          <li>Confidentiality agreements</li>
+          <li>Hiring issues</li>
+          <li>Wage and hour issues</li>
+          <li>Individual or group layoffs</li>
+          <li>EEO training, supervisor training, human resources training, proper documentation practices</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="contact-bar">
+    <div class="contact-bar-inner">
+      <div>
+        <div class="contact-item-label">Call Us</div>
+        <div class="contact-item-val"><a href="tel:1-512-617-5563">(512) 617-5563</a><small>Main Line</small></div>
+      </div>
+      <div>
+        <div class="contact-item-label">Fax</div>
+        <div class="contact-item-val">512.617.5563</div>
+      </div>
+      <div>
+        <div class="contact-item-label">Office Location</div>
+        <div class="contact-item-val" style="font-size:17px;">809 West Avenue<small>Austin, Texas 78701</small></div>
+      </div>
+      <div>
+        <div class="contact-item-label">Pay Bill Online</div>
+        <a class="btn-dark" href="https://smartpay.profitstars.com/express/NESBITT%20LEGAL%20PLLC" target="_blank">Pay Bill Online →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo-name">Nesbitt Legal</div>
+          <div class="footer-logo-sub">Austin, Texas</div>
+          <div class="footer-address">809 West Ave.<br>Austin, TX 78701<br><br><a href="tel:1-512-617-5563" style="color:rgba(255,255,255,0.4);text-decoration:none;">(512) 617-5563</a><br>Fax: 512.617.5563</div>
+        </div>
+        <div>
+          <div class="footer-col-label">Practice</div>
+          <div class="footer-col-links">
+            <span class="footer-col-link" onclick="showPage('practice')">Labor & Employment Advice</span>
+            <span class="footer-col-link" onclick="showPage('mediation')">Mediation</span>
+            <span class="footer-col-link" onclick="showPage('practice')">Workplace Investigations</span>
+            <span class="footer-col-link" onclick="showPage('practice')">Employment Consulting & Training</span>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-label">Attorneys</div>
+          <div class="footer-col-links">
+            <span class="footer-col-link" onclick="showPage('attorneys')">Tom Nesbitt</span>
+            <span class="footer-col-link" onclick="showPage('attorneys')">Laura J. Goodson</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-legal">Attorney Advertising. Prior results do not guarantee a similar outcome. © 2025 Nesbitt Legal PLLC</div>
+        <a class="footer-pay" href="https://smartpay.profitstars.com/express/NESBITT%20LEGAL%20PLLC" target="_blank">Pay Bill Online</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════ ATTORNEYS PAGE -->
+<div class="page" id="page-attorneys">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-hero-eyebrow">Nesbitt Legal</div>
+      <h1>Attorneys</h1>
+    </div>
+  </div>
+
+  <section class="attorneys-dark" style="padding-bottom:0;">
+    <div class="section-inner">
+      <div class="section-label">Our Team</div>
+    </div>
+    <div class="atty-grid" style="max-width:none;">
+      <!-- Tom -->
+      <div class="atty-card" id="tom">
+        <div class="atty-photo-placeholder" style="width:120px;height:150px;">
+          <span style="font-size:36px;">TN</span><small>Photo</small>
+        </div>
+        <div class="atty-cert">Board Certified · Labor & Employment Law · Texas Board of Legal Specialization</div>
+        <div class="atty-name">Tom Nesbitt</div>
+        <p class="atty-bio" style="font-size:15px;">Tom Nesbitt is Board Certified in Labor and Employment Law by the Texas Board of Legal Specialization. Tom is listed in Best Lawyers in America, and <em>Texas Monthly</em> consistently recognizes him as a Super Lawyer in the practice of Labor & Employment law. Tom earned his JD with honors from the University of Texas School of Law. He has a Bachelor of Arts degree in English from Baylor University. Prior to founding DeShazo & Nesbitt, Tom was with the Austin office of Fulbright & Jaworski, now Norton Rose Fulbright. Tom is admitted to practice in the U.S. District Courts for the Western, Southern and Northern Districts of Texas and the U.S. Court of Appeals for the Fifth Circuit.</p>
+        <div class="atty-actions">
+          <a class="atty-btn" href="mailto:tom@nesbittlegal.com">Email Tom</a>
+          <a class="atty-btn" href="tel:1-512-617-5562">(512) 617-5562</a>
+          <a class="atty-btn" href="https://nesbittlegal.com/wp-content/uploads/2025/01/Tom_Nesbitt.vcf">Open VCard</a>
+          <a class="atty-btn" href="https://nesbittlegal.com/wp-content/uploads/2025/01/NesbittBio2025.pdf" target="_blank">Full Bio (PDF)</a>
+        </div>
+      </div>
+      <!-- Laura -->
+      <div class="atty-card" id="laura">
+        <div class="atty-photo-placeholder" style="width:120px;height:150px;">
+          <span style="font-size:36px;">LG</span><small>Photo</small>
+        </div>
+        <div class="atty-cert">Board Certified · Labor & Employment Law · Texas Board of Legal Specialization</div>
+        <div class="atty-name">Laura J. Goodson</div>
+        <p class="atty-bio" style="font-size:15px;">Laura Goodson is Board Certified in Labor and Employment Law by the Texas Board of Legal Specialization. Laura received her JD with honors from The University of Texas School of Law. She also holds a Bachelor of Arts in history from Southwestern University in Georgetown, Texas and a Master of Arts in history from Queen's University in Kingston, Ontario, Canada. Prior to joining DeShazo & Nesbitt in 2014, Laura practiced for 10 years in the Labor and Employment and Trial sections of the Houston office of Gardere, Wynne, Sewell, now Foley Gardere. Laura was born in Calgary, Alberta, Canada. She grew up in both Calgary and in Corpus Christi, Texas, holding dual citizenship and dual allegiances during Olympic hockey games.</p>
+        <div class="atty-actions">
+          <a class="atty-btn" href="mailto:laura@nesbittlegal.com">Email Laura</a>
+          <a class="atty-btn" href="tel:1-512-485-4380">(512) 485-4380</a>
+          <a class="atty-btn" href="https://nesbittlegal.com/wp-content/uploads/2025/01/Laura_J_Goodson.vcf">Open VCard</a>
+          <a class="atty-btn" href="https://nesbittlegal.com/wp-content/uploads/2025/01/GoodsonBio2025.pdf" target="_blank">Full Bio (PDF)</a>
+        </div>
+      </div>
+    </div>
+    <div class="stats-bar" style="max-width:none;">
+      <div class="stat-item"><div class="stat-num">45+</div><div class="stat-label">Combined Years<br>of Experience</div></div>
+      <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Board Certified<br>Attorneys</div></div>
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Labor & Employment<br>Focus</div></div>
+    </div>
+  </section>
+
+  <div class="contact-bar">
+    <div class="contact-bar-inner">
+      <div><div class="contact-item-label">Call Us</div><div class="contact-item-val"><a href="tel:1-512-617-5563">(512) 617-5563</a><small>Main Line</small></div></div>
+      <div><div class="contact-item-label">Fax</div><div class="contact-item-val">512.617.5563</div></div>
+      <div><div class="contact-item-label">Office Location</div><div class="contact-item-val" style="font-size:17px;">809 West Avenue<small>Austin, Texas 78701</small></div></div>
+      <div><div class="contact-item-label">Pay Bill Online</div><a class="btn-dark" href="https://smartpay.profitstars.com/express/NESBITT%20LEGAL%20PLLC" target="_blank">Pay Bill Online →</a></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div><div class="footer-logo-name">Nesbitt Legal</div><div class="footer-logo-sub">Austin, Texas</div><div class="footer-address">809 West Ave.<br>Austin, TX 78701<br><br><a href="tel:1-512-617-5563" style="color:rgba(255,255,255,0.4);text-decoration:none;">(512) 617-5563</a><br>Fax: 512.617.5563</div></div>
+        <div><div class="footer-col-label">Practice</div><div class="footer-col-links"><span class="footer-col-link" onclick="showPage('practice')">Labor & Employment Advice</span><span class="footer-col-link" onclick="showPage('mediation')">Mediation</span><span class="footer-col-link" onclick="showPage('practice')">Workplace Investigations</span><span class="footer-col-link" onclick="showPage('practice')">Employment Consulting & Training</span></div></div>
+        <div><div class="footer-col-label">Attorneys</div><div class="footer-col-links"><span class="footer-col-link" onclick="showPage('attorneys')">Tom Nesbitt</span><span class="footer-col-link" onclick="showPage('attorneys')">Laura J. Goodson</span></div></div>
+      </div>
+      <div class="footer-bottom"><div class="footer-legal">Attorney Advertising. Prior results do not guarantee a similar outcome. © 2025 Nesbitt Legal PLLC</div><a class="footer-pay" href="https://smartpay.profitstars.com/express/NESBITT%20LEGAL%20PLLC" target="_blank">Pay Bill Online</a></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════ MEDIATION PAGE -->
+<div class="page" id="page-mediation">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-hero-eyebrow">Nesbitt Legal</div>
+      <h1>Mediation with<br>Tom Nesbitt</h1>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--white);">
+    <div class="section-inner">
+      <div class="med-intro">
+        <div class="med-intro-text">
+          <div class="section-label">About the Mediator</div>
+          <p>As a litigator for over 24 years, I have always appreciated an effective mediator. We have many great ones here in Austin — professionals skilled at helping our clients see a path to resolving conflict.</p>
+          <p>I am available to serve as your mediator in all varieties of civil disputes. My 24 years of practice in labor & employment law and commercial litigation make me particularly well-suited to mediate your clients' non-compete, trade secrets, shareholder/business divorce, employment contract or employment discrimination/retaliation cases.</p>
+          <p>Although I spent the first nine years of my career representing almost exclusively employers, over the last 14 years I have represented both employers and individuals in consultation and litigation. I believe that the relatively rare experience of having represented both companies and individuals will be an asset in helping you and your clients resolve conflicts.</p>
+          <p>I can conduct your mediation at my law office, at your office, or by Zoom. Or we can arrange for a separate location.</p>
+        </div>
+        <div class="med-sidebar">
+          <div class="med-sidebar-photo"><span>TN</span><small>Photo</small></div>
+          <div class="med-sidebar-name">Tom Nesbitt</div>
+          <div class="med-sidebar-btns">
+            <a class="med-sidebar-btn" href="mailto:tom@nesbittlegal.com">Email Tom</a>
+            <a class="med-sidebar-btn" href="tel:1-512-617-5562">(512) 617-5562</a>
+            <a class="med-sidebar-btn" href="https://nesbittlegal.com/wp-content/uploads/2025/01/Tom_Nesbitt.vcf">Open VCard</a>
+            <a class="med-sidebar-btn" href="https://nesbittlegal.com/wp-content/uploads/2025/01/Tom2025MediatorBio.pdf" target="_blank">Full Bio (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fee Schedule -->
+  <div class="fees-section">
+    <div class="section-inner">
+      <div class="section-label" style="color:var(--navy);border-color:var(--rule);">
+        <span style="width:28px;height:2px;background:var(--navy);display:inline-block;flex-shrink:0;"></span>
+        Mediation Fee Schedule
+      </div>
+      <h2 class="section-title" style="margin-bottom:0;">Transparent flat-rate pricing —<br><em>flexible scheduling to fit your case.</em></h2>
+    </div>
+    <div class="fees-grid" style="max-width:1280px;margin:40px auto 0;">
+      <div class="fee-card">
+        <div class="fee-label">Full Day</div>
+        <div class="fee-type">Full Day Mediation</div>
+        <div class="fee-price">$2,000 per side</div>
+        <div class="fee-time">9 am – 5:30 pm</div>
+        <a class="btn-dark" href="https://calendly.com/nesbittmediation/full-day-mediation" target="_blank">Book Full Day →</a>
+      </div>
+      <div class="fee-card">
+        <div class="fee-label">Half Day — Morning</div>
+        <div class="fee-type">Morning Session</div>
+        <div class="fee-price">$1,000 per side</div>
+        <div class="fee-time">9 am – 1 pm</div>
+        <a class="btn-dark" href="https://calendly.com/nesbittmediation/half-day-mediation-morning" target="_blank">Book Morning →</a>
+      </div>
+      <div class="fee-card">
+        <div class="fee-label">Half Day — Afternoon</div>
+        <div class="fee-type">Afternoon Session</div>
+        <div class="fee-price">$1,000 per side</div>
+        <div class="fee-time">1:30 pm – 5:30 pm</div>
+        <a class="btn-dark" href="https://calendly.com/nesbittmediation/half-day-mediation-afternoon" target="_blank">Book Afternoon →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-bar">
+    <div class="contact-bar-inner">
+      <div><div class="contact-item-label">Call Us</div><div class="contact-item-val"><a href="tel:1-512-617-5563">(512) 617-5563</a><small>Main Line</small></div></div>
+      <div><div class="contact-item-label">Fax</div><div class="contact-item-val">512.617.5563</div></div>
+      <div><div class="contact-item-label">Office Location</div><div class="contact-item-val" style="font-size:17px;">809 West Avenue<small>Austin, Texas 78701</small></div></div>
+      <div><div class="contact-item-label">Pay Bill Online</div><a class="btn-dark" href="https://smartpay.profitstars.com/express/NESBITT%20LEGAL%20PLLC" target="_blank">Pay Bill Online →</a></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div><div class="footer-logo-name">Nesbitt Legal</div><div class="footer-logo-sub">Austin, Texas</div><div class="footer-address">809 West Ave.<br>Austin, TX 78701<br><br><a href="tel:1-512-617-5563" style="color:rgba(255,255,255,0.4);text-decoration:none;">(512) 617-5563</a><br>Fax: 512.617.5563</div></div>
+        <div><div class="footer-col-label">Practice</div><div class="footer-col-links"><span class="footer-col-link" onclick="showPage('practice')">Labor & Employment Advice</span><span class="footer-col-link" onclick="showPage('mediation')">Mediation</span><span class="footer-col-link" onclick="showPage('practice')">Workplace Investigations</span><span class="footer-col-link" onclick="showPage('practice')">Employment Consulting & Training</span></div></div>
+        <div><div class="footer-col-label">Attorneys</div><div class="footer-col-links"><span class="footer-col-link" onclick="showPage('attorneys')">Tom Nesbitt</span><span class="footer-col-link" onclick="showPage('attorneys')">Laura J. Goodson</span></div></div>
+      </div>
+      <div class="footer-bottom"><div class="footer-legal">Attorney Advertising. Prior results do not guarantee a similar outcome. © 2025 Nesbitt Legal PLLC</div><a class="footer-pay" href="https://smartpay.profitstars.com/express/NESBITT%20LEGAL%20PLLC" target="_blank">Pay Bill Online</a></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════ CONTACT PAGE -->
+<div class="page" id="page-contact">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-hero-eyebrow">Nesbitt Legal</div>
+      <h1>Contact Us</h1>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--white);">
+    <div class="section-inner">
+      <div class="section-label">We'd love to hear from you</div>
+      <h2 class="section-title">Call us to start the <em>conversation.</em></h2>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);max-width:900px;">
+        <div style="padding:40px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);">
+          <div class="contact-item-label">Main Phone</div>
+          <div style="font-family:'EB Garamond',serif;font-size:32px;color:var(--navy);margin-bottom:8px;">
+            <a href="tel:1-512-617-5563" style="color:var(--navy);text-decoration:none;">(512) 617-5563</a>
+          </div>
+          <div style="font-size:13px;color:var(--text-light);">Call us to start the conversation</div>
+        </div>
+        <div style="padding:40px;border-bottom:1px solid var(--rule);">
+          <div class="contact-item-label">Fax</div>
+          <div style="font-family:'EB Garamond',serif;font-size:32px;color:var(--navy);margin-bottom:8px;">512.617.5563</div>
+        </div>
+        <div style="padding:40px;border-right:1px solid var(--rule);">
+          <div class="contact-item-label">Office Location</div>
+          <div style="font-family:'EB Garamond',serif;font-size:22px;color:var(--navy);margin-bottom:6px;line-height:1.4;">809 West Avenue<br>Austin, Texas 78701</div>
+        </div>
+        <div style="padding:40px;">
+          <div class="contact-item-label">Pay Bill Online</div>
+          <div style="font-size:14px;color:var(--text-light);margin-bottom:20px;line-height:1.7;">Nesbitt Legal PLLC accepts online bill payments securely through ProfiтStars.</div>
+          <a class="btn-dark" href="https://smartpay.profitstars.com/express/NESBITT%20LEGAL%20PLLC" target="_blank">Pay Bill Online →</a>
+        </div>
+      </div>
+
+      <div style="margin-top:60px;border-top:1px solid var(--rule);padding-top:48px;max-width:900px;">
+        <div class="section-label">Email Our Attorneys Directly</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:24px;">
+          <div style="background:var(--blue-pale);padding:28px;border:1px solid var(--rule);">
+            <div style="font-family:'EB Garamond',serif;font-size:22px;color:var(--navy);margin-bottom:6px;">Tom Nesbitt</div>
+            <div style="font-size:13px;color:var(--text-light);margin-bottom:20px;">Labor & Employment · Mediation</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <a class="btn-ghost" href="mailto:tom@nesbittlegal.com">Email Tom</a>
+              <a class="btn-ghost" href="tel:1-512-617-5562">(512) 617-5562</a>
+            </div>
+          </div>
+          <div style="background:var(--blue-pale);padding:28px;border:1px solid var(--rule);">
+            <div style="font-family:'EB Garamond',serif;font-size:22px;color:var(--navy);margin-bottom:6px;">Laura J. Goodson</div>
+            <div style="font-size:13px;color:var(--text-light);margin-bottom:20px;">Labor & Employment</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <a class="btn-ghost" href="mailto:laura@nesbittlegal.com">Email Laura</a>
+              <a class="btn-ghost" href="tel:1-512-485-4380">(512) 485-4380</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div><div class="footer-logo-name">Nesbitt Legal</div><div class="footer-logo-sub">Austin, Texas</div><div class="footer-address">809 West Ave.<br>Austin, TX 78701<br><br><a href="tel:1-512-617-5563" style="color:rgba(255,255,255,0.4);text-decoration:none;">(512) 617-5563</a><br>Fax: 512.617.5563</div></div>
+        <div><div class="footer-col-label">Practice</div><div class="footer-col-links"><span class="footer-col-link" onclick="showPage('practice')">Labor & Employment Advice</span><span class="footer-col-link" onclick="showPage('mediation')">Mediation</span><span class="footer-col-link" onclick="showPage('practice')">Workplace Investigations</span><span class="footer-col-link" onclick="showPage('practice')">Employment Consulting & Training</span></div></div>
+        <div><div class="footer-col-label">Attorneys</div><div class="footer-col-links"><span class="footer-col-link" onclick="showPage('attorneys')">Tom Nesbitt</span><span class="footer-col-link" onclick="showPage('attorneys')">Laura J. Goodson</span></div></div>
+      </div>
+      <div class="footer-bottom"><div class="footer-legal">Attorney Advertising. Prior results do not guarantee a similar outcome. © 2025 Nesbitt Legal PLLC</div><a class="footer-pay" href="https://smartpay.profitstars.com/express/NESBITT%20LEGAL%20PLLC" target="_blank">Pay Bill Online</a></div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    const page = document.getElementById('page-' + name);
+    if (page) {
+      page.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    const navLink = document.getElementById('nav-' + name);
+    if (navLink) navLink.classList.add('active');
+  }
+
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('main-nav');
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>
